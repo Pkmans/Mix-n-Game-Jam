@@ -49,8 +49,14 @@ public class orangeEnemy : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.CompareTag("playerBullet")) {
             Instantiate(deathParticles, transform.position, deathParticles.transform.rotation);
+            
             col.gameObject.GetComponent<bulletScript>().boom();
             Destroy(gameObject);
+            return;
+        }
+
+        if (col.gameObject.CompareTag("Player")) {
+            col.gameObject.GetComponent<PlayerHealth>().takeDamage(1);
         }
     }
 

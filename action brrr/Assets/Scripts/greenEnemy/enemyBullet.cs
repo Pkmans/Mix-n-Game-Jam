@@ -33,6 +33,7 @@ public class enemyBullet : MonoBehaviour
         }
 
         if (col.gameObject.CompareTag("Player")) {
+            col.gameObject.GetComponent<PlayerHealth>().takeDamage(1);
             boom();
         }
     }
