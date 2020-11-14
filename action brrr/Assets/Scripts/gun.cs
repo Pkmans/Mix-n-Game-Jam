@@ -10,10 +10,12 @@ public class gun : MonoBehaviour
     private float timeBtwShots;
     public float startTimeBtwShots;
 
+    private AudioSource shotSound;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        shotSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,8 @@ public class gun : MonoBehaviour
             if (Input.GetMouseButtonDown(0)) {
                 Instantiate(bulletPrefab, gunTip.position, transform.rotation);
                 timeBtwShots = startTimeBtwShots;
+
+                shotSound.Play();
             }
         } else {
             timeBtwShots -= Time.deltaTime;

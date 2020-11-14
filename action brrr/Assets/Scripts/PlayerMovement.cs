@@ -21,11 +21,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private AudioSource jumpSound;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         extraJumps = extraJumpsValue;
+
+        jumpSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump() {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-
+        
+        jumpSound.Play();
     }
 }

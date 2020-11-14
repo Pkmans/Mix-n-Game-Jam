@@ -29,6 +29,11 @@ public class enemyBullet : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.layer == 8) { //ground layer
             boom();
+            return;
+        }
+
+        if (col.gameObject.CompareTag("Player")) {
+            boom();
         }
     }
 

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class bulletScript : MonoBehaviour
 {
-    
+    public AudioSource hitSound;
+
     public float speed;
     public GameObject particles;
 
@@ -18,6 +19,8 @@ public class bulletScript : MonoBehaviour
         bulletDir.Normalize();
 
         Destroy(gameObject, 3f);
+
+        hitSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,7 +36,12 @@ public class bulletScript : MonoBehaviour
     }
 
     public void boom() {
+        hitSound.Play();
         Instantiate(particles, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+
+        //hide before delay destroying
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<TrailRenderer>().enabled = false;
+        Destroy(gameObject, 0.5f);
     }
 }
