@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7122291697024722049}
   - component: {fileID: 7122291697024722062}
-  - component: {fileID: 3752352956809780817}
   - component: {fileID: -6394890826401657849}
   - component: {fileID: -4846218724042491591}
   - component: {fileID: -5417406131156683552}
+  - component: {fileID: 4961409402141867271}
   m_Layer: 0
-  m_Name: bullet
-  m_TagString: playerBullet
+  m_Name: enemyBullet
+  m_TagString: enemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 82df092e73c459543bc483a81fa453c3, type: 3}
-  m_Color: {r: 0, g: 0.79031897, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.15076348, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,21 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3752352956809780817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7122291697024722063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4688df65ae7afd040adc0a7925fd4f14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  particles: {fileID: 6362833687609406746, guid: fc2da77bec1b0184580b997a5509626c,
-    type: 3}
 --- !u!58 &-6394890826401657849
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -207,8 +192,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.25943398, g: 0.78799486, b: 1, a: 1}
-      key1: {r: 0.7688679, g: 0.93328154, b: 1, a: 1}
+      key0: {r: 0.85098046, g: 0.13333334, b: 0, a: 1}
+      key1: {r: 1, g: 0.8528171, b: 0.8254717, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -243,3 +228,18 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &4961409402141867271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7122291697024722063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76449f9a160d1f146b4a43df0bf9d43d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
+  particles: {fileID: 6362833687609406746, guid: 0343482f7907d494ebc0a6d18e8211c0,
+    type: 3}

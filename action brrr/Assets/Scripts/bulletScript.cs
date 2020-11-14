@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class bulletScript : MonoBehaviour
 {
+    
     public float speed;
+    public GameObject particles;
+
     private Vector3 bulletDir;
 
     // Start is called before the first frame update
@@ -21,5 +24,16 @@ public class bulletScript : MonoBehaviour
     void Update()
     {
         transform.position += bulletDir * speed * Time.deltaTime;
+    }
+
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.layer == 8) { //ground layer
+            boom();
+        }
+    }
+
+    public void boom() {
+        Instantiate(particles, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

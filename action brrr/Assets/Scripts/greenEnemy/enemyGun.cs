@@ -2,25 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gun : MonoBehaviour
+public class enemyGun : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform gunTip;
 
-    private float timeBtwShots;
+    private Transform player;
+
+    //time variables
     public float startTimeBtwShots;
+    private float timeBtwShots;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //rotate gun to mouse
-        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        //rotate gun to player
+        Vector3 diff = player.position - transform.position;
         diff.Normalize();
 
         float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
@@ -31,13 +34,10 @@ public class gun : MonoBehaviour
             transform.localRotation = Quaternion.Euler(180f, 0f, -rotationZ);
         }
 
-
         //shoot bullet
         if (timeBtwShots <= 0) {
-            if (Input.GetMouseButtonDown(0)) {
-                Instantiate(bulletPrefab, gunTip.position, transform.rotation);
-                timeBtwShots = startTimeBtwShots;
-            }
+            Instantiate(bulletPrefab, gunTip.position, transform.rotation);
+            timeBtwShots = startTimeBtwShots;
         } else {
             timeBtwShots -= Time.deltaTime;
         }
