@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject player;
+    public GameObject mainMenu;
+    public GameObject aboutMenu;
 
     private GameObject gun, shotgun1, rocket1;
 
@@ -18,6 +20,16 @@ public class MainMenu : MonoBehaviour
 
     public void startGame() {
         SceneManager.LoadScene(1);
+    }
+
+    public void about() {
+        mainMenu.SetActive(false);
+        aboutMenu.SetActive(true);
+    }
+
+    public void back() {
+        aboutMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     public void rifle() {

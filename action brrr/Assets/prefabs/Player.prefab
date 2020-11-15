@@ -1107,6 +1107,8 @@ MonoBehaviour:
   smokeParticles: {fileID: 489241540040934414, guid: 35819d1925d848e43b20700f0b94c0ba,
     type: 3}
   fireParticles: {fileID: 8143674147575222841}
+  timeMax: 2
+  rechargeSpeed: 2
 --- !u!1 &8632845145874196997
 GameObject:
   m_ObjectHideFlags: 0

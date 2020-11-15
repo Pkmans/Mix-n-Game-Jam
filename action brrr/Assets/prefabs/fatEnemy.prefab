@@ -209,7 +209,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7122291697024722063, guid: c784a2188cb1749479da1491be9f73e1,
     type: 3}
   gunTip: {fileID: 6360771253923371389}
-  startTimeBtwShots: 0.7
+  startTimeBtwShots: 0.5
 --- !u!1 &6360771253923371386
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class explosive : MonoBehaviour
 {
@@ -62,6 +63,7 @@ public class explosive : MonoBehaviour
         //delay destruction
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
+        transform.Find("light").gameObject.SetActive(false);
         Destroy(gameObject, 1f);
 
     }
