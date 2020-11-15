@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6360771253263503406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.79, y: 6.11, z: 0}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3107}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.3107}
   m_Children:
   - {fileID: 6360771253656256556}
   - {fileID: 6360771254325264137}
@@ -161,6 +161,7 @@ MonoBehaviour:
   deathParticles: {fileID: 6362833687609406746, guid: cbfa60a5de090df4f8f1b035d44adf87,
     type: 3}
   hp: 15
+  scoreValue: 500
 --- !u!1 &6360771253656256557
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,10 +206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926f45199c6f1c84f9b0d3c5cd13c6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7122291697024722063, guid: d04c396b7fd90c54dad9822116f79985,
+  bulletPrefab: {fileID: 7122291697024722063, guid: c784a2188cb1749479da1491be9f73e1,
     type: 3}
   gunTip: {fileID: 6360771253923371389}
-  startTimeBtwShots: 0.2
+  startTimeBtwShots: 0.7
 --- !u!1 &6360771253923371386
 GameObject:
   m_ObjectHideFlags: 0

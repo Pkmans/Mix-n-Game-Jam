@@ -25,6 +25,8 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         bossTimer = bossRate;
+
+        timeBtwSpawn = startTimeBtwSpawn;
     }
 
     // Update is called once per frame

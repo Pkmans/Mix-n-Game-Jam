@@ -7,6 +7,8 @@ public class enemyHealth : MonoBehaviour
     public GameObject deathParticles;
     public int hp = 3;
 
+    public int scoreValue = 100;
+
     private SpriteRenderer body;
     private scoreScript scoreScript;
 
@@ -45,7 +47,7 @@ public class enemyHealth : MonoBehaviour
 
     void Die() {
         Instantiate(deathParticles, transform.position, deathParticles.transform.rotation);
-        scoreScript.scoreValue += 100;
+        scoreScript.scoreValue += scoreValue;
         Destroy(gameObject);
     }
 

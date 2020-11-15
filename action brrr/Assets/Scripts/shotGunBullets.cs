@@ -25,9 +25,7 @@ public class shotGunBullets : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.layer == 8) { //ground layer
-            boom();
-        }
+        boom();
     }
 
     public void boom() {

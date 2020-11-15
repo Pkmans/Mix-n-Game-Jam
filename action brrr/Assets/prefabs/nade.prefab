@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2504292abfe69b44c987a95556cfda2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 5
+  strength: 7
   radius: 3
   particles: {fileID: 489241540040934414, guid: ea0df53e79e33f34b8018682834bada0,
     type: 3}

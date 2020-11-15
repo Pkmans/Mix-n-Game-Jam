@@ -20,7 +20,7 @@ public class bulletScript : MonoBehaviour
 
         Destroy(gameObject, 3f);
 
-        hitSound = GetComponent<AudioSource>();
+        // hitSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

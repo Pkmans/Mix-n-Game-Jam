@@ -8,18 +8,33 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject player;
 
+    private GameObject gun, shotgun1, rocket1;
+
+    void Start() {
+        gun = player.transform.Find("gun").gameObject;
+        shotgun1 = player.transform.Find("shotgun").gameObject;
+        rocket1 = player.transform.Find("rocket").gameObject;
+    }
+
     public void startGame() {
         SceneManager.LoadScene(1);
     }
 
     public void rifle() {
-        player.transform.Find("gun").gameObject.SetActive(true);
-        player.transform.Find("shotgun").gameObject.SetActive(false);
-
+        gun.SetActive(true);
+        shotgun1.SetActive(false);
+        rocket1.SetActive(false);
     }
 
     public void shotgun() {
-        player.transform.Find("gun").gameObject.SetActive(false);
-        player.transform.Find("shotgun").gameObject.SetActive(true);
+        shotgun1.SetActive(true);
+        gun.SetActive(false);
+        rocket1.SetActive(false);
+    }
+
+    public void rocket() {
+        gun.SetActive(false);
+        shotgun1.SetActive(false);
+        rocket1.SetActive(true);
     }
 }

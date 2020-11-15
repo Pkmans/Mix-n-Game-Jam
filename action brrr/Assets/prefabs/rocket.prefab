@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: -4846218724042491591}
   - component: {fileID: -5417406131156683552}
   - component: {fileID: 691609906449028337}
-  - component: {fileID: 7396078993696901888}
+  - component: {fileID: 3677409434316516765}
   m_Layer: 11
-  m_Name: bullet 1
+  m_Name: rocket
   m_TagString: playerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7122291697024722063}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.53, y: -2.15, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -166,7 +166,7 @@ TrailRenderer:
   m_Time: 0.5
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -239,7 +239,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6fb802d7735c2a54f96b0a13387b373b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4479a375f8a18ef47961fd7389a41346, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: 1
@@ -325,7 +325,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7396078993696901888
+--- !u!114 &3677409434316516765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,10 +334,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7122291697024722063}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50d69df5888ba4b4ba4af41c01eaa460, type: 3}
+  m_Script: {fileID: 11500000, guid: 357df1c24b571464c96de38fe3857a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSound: {fileID: 691609906449028337}
-  particles: {fileID: 6362833687609406746, guid: fc2da77bec1b0184580b997a5509626c,
+  strength: 15
+  radius: 4.5
+  explodeSound: {fileID: 691609906449028337}
+  speed: 14
+  particles: {fileID: 489241540040934414, guid: 15d27730c29eb834eb8608c9114dfc66,
     type: 3}
-  speed: 18

@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public cameraShake cameraShake;
 
     private Transform respawnPoint;
+    private GameObject enemSpawner, tntSpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,11 @@ public class PlayerHealth : MonoBehaviour
         hpBar.setMaxHealth(maxHp);
 
         respawnPoint = GameObject.Find("respawn Point").transform;
+
+        //reference to spawners
+        enemSpawner = GameObject.Find("enemySpawner");
+        tntSpawner = GameObject.Find("tntSpawner");
+
     }
 
     // Update is called once per frame
@@ -45,6 +51,9 @@ public class PlayerHealth : MonoBehaviour
     void die() {
         transform.position = new Vector3(50, 50, 0);
         deadUI.SetActive(true);
+
+        enemSpawner.SetActive(false);
+        tntSpawner.SetActive(false);
     }
 
     public void respawn() {
