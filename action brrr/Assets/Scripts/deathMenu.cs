@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class deathMenu : MonoBehaviour
 {
@@ -23,5 +25,13 @@ public class deathMenu : MonoBehaviour
     public void respawnPlayer() {
         player.respawn();
         deadUI.SetActive(false);
+    }
+
+    public void restart() {
+        SceneManager.LoadScene(0);
+    }
+
+    public void quitGame() {
+        Application.Quit();
     }
 }

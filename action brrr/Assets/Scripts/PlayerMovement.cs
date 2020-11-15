@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     //jumps
     public float extraJumpsValue;
     private float extraJumps;
+    public GameObject jumpParticles;
 
     //groundchecks
     public bool isGrounded = false;
@@ -19,9 +20,11 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
 
-    private Rigidbody2D rb;
+    [HideInInspector]
+    public Rigidbody2D rb;
 
     private AudioSource jumpSound;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
         extraJumps = extraJumpsValue;
 
         jumpSound = GetComponent<AudioSource>();
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -57,6 +62,10 @@ public class PlayerMovement : MonoBehaviour
     void Jump() {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         
+        //effects
         jumpSound.Play();
+        anim.SetTrigger("jump");
+
+        Instantiate(jumpParticles, groundCheck.position, Quaternion.identity);
     }
 }

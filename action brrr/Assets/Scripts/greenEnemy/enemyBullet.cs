@@ -18,6 +18,8 @@ public class enemyBullet : MonoBehaviour
         bulletDir = player.position - transform.position;
         bulletDir.z = 0;
         bulletDir.Normalize();
+
+        Destroy(gameObject, 4f);
     }
 
     // Update is called once per frame
@@ -27,15 +29,11 @@ public class enemyBullet : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.layer == 8) { //ground layer
-            boom();
-            return;
-        }
-
         if (col.gameObject.CompareTag("Player")) {
             col.gameObject.GetComponent<PlayerHealth>().takeDamage(1);
-            boom();
         }
+
+        boom();
     }
 
     void boom() {

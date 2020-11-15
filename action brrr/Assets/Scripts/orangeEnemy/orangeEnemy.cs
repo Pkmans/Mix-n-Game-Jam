@@ -11,15 +11,21 @@ public class orangeEnemy : MonoBehaviour
     private Rigidbody2D rb;
     
     //particles
-    public GameObject deathParticles;
+    public GameObject jumpParticles;
 
     //time variables
     public float startTimeBtwJumps = 2f;
     private float timeBtwJumps;
 
+    private Animator anim;
+    private AudioSource jumpSound;
+
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
+        jumpSound = GetComponent<AudioSource>();
+
         player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
 
@@ -44,17 +50,14 @@ public class orangeEnemy : MonoBehaviour
         dir.Normalize();
 
         rb.velocity = new Vector2(dir.x * sidewaysForce, jumpForce);
+
+        //effets
+        anim.SetTrigger("jump");
+        jumpSound.Play();
+        Instantiate(jumpParticles, transform.position, jumpParticles.transform.rotation);
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.CompareTag("playerBullet")) {
-            Instantiate(deathParticles, transform.position, deathParticles.transform.rotation);
-            
-            col.gameObject.GetComponent<bulletScript>().boom();
-            Destroy(gameObject);
-            return;
-        }
-
         if (col.gameObject.CompareTag("Player")) {
             col.gameObject.GetComponent<PlayerHealth>().takeDamage(1);
         }

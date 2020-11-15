@@ -30,9 +30,7 @@ public class bulletScript : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.layer == 8) { //ground layer
-            boom();
-        }
+        boom();
     }
 
     public void boom() {
@@ -42,6 +40,7 @@ public class bulletScript : MonoBehaviour
         //hide before delay destroying
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<TrailRenderer>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
         Destroy(gameObject, 0.5f);
     }
 }

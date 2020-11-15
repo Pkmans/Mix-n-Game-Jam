@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentHp < 0) {
+        if (currentHp <= 0) {
             die();
         }
     }
@@ -44,7 +44,6 @@ public class PlayerHealth : MonoBehaviour
 
     void die() {
         transform.position = new Vector3(50, 50, 0);
-        //turn on death UI
         deadUI.SetActive(true);
     }
 
@@ -54,6 +53,12 @@ public class PlayerHealth : MonoBehaviour
         //reset hp
         currentHp = maxHp;
         hpBar.setMaxHealth(maxHp);
+    }
+
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.layer == 12) {
+            takeDamage(maxHp);
+        }
     }
 
 

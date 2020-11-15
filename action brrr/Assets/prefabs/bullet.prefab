@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4846218724042491591}
   - component: {fileID: -5417406131156683552}
   - component: {fileID: 691609906449028337}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: bullet
   m_TagString: playerBullet
   m_Icon: {fileID: 0}
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4688df65ae7afd040adc0a7925fd4f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSound: {fileID: 0}
-  speed: 10
+  hitSound: {fileID: 691609906449028337}
+  speed: 12
   particles: {fileID: 6362833687609406746, guid: fc2da77bec1b0184580b997a5509626c,
     type: 3}
 --- !u!58 &-6394890826401657849
@@ -117,7 +117,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.4
 --- !u!50 &-4846218724042491591
 Rigidbody2D:
   serializedVersion: 4
