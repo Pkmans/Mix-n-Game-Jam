@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenu;
     public GameObject aboutMenu;
 
+    public characterManager characterManager;
+
     private GameObject gun, shotgun1, rocket1;
 
     void Start() {
@@ -33,20 +35,29 @@ public class MainMenu : MonoBehaviour
     }
 
     public void rifle() {
-        gun.SetActive(true);
-        shotgun1.SetActive(false);
-        rocket1.SetActive(false);
+        // gun.SetActive(true);
+        // shotgun1.SetActive(false);
+        // rocket1.SetActive(false);
+        characterManager.rifleWeapon = true;
+        characterManager.shotgunWeapon = false;
+        characterManager.rocketWeapon = false;
     }
 
     public void shotgun() {
-        shotgun1.SetActive(true);
-        gun.SetActive(false);
-        rocket1.SetActive(false);
+        // shotgun1.SetActive(true);
+        // gun.SetActive(false);
+        // rocket1.SetActive(false);
+        characterManager.rifleWeapon = false;
+        characterManager.shotgunWeapon = true;
+        characterManager.rocketWeapon = false;
     }
 
     public void rocket() {
-        gun.SetActive(false);
-        shotgun1.SetActive(false);
-        rocket1.SetActive(true);
+        // gun.SetActive(false);
+        // shotgun1.SetActive(false);
+        // rocket1.SetActive(true);
+        characterManager.rifleWeapon = false;
+        characterManager.shotgunWeapon = false;
+        characterManager.rocketWeapon = true;
     }
 }
