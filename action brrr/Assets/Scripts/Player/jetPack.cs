@@ -8,14 +8,15 @@ public class jetPack : MonoBehaviour
     public GameObject smokeParticles;
     public ParticleSystem fireParticles;
 
+    public float maxFlySpeed;
+
     public float timeMax;
     private float timeLeft;
-
-    public float rechargeSpeed = 2f;
 
     public jetpackBar jetpackBar;
     
     private PlayerMovement player;
+    private Rigidbody2D rb;
 
     private bool ready;
 
@@ -23,6 +24,8 @@ public class jetPack : MonoBehaviour
     void Start()
     {
         player = GetComponentInParent<PlayerMovement>();
+        rb = player.rb;
+
         timeLeft = timeMax;
 
         jetpackBar.setMaxBar(timeMax);
@@ -33,23 +36,33 @@ public class jetPack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float xVel = rb.velocity.x;
+        float yVel = rb.velocity.y;
+
+
+        //reset jetpack duration if grounded
         if (timeLeft != timeMax && player.isGrounded) {
             jetpackBar.setMaxBar(timeMax);
             timeLeft = timeMax;
         }
     
-
+        //play smoke particles if key pressed
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            
+            if (yVel < -0.2f)
+                rb.velocity = (new Vector2(xVel, 0));
+            
             Instantiate(smokeParticles, transform.position, smokeParticles.transform.rotation);
             fireParticles.Play();
 
             ready = true; 
         }
 
+        //use jetpack if holding down key
         if (Input.GetKey(KeyCode.LeftShift) && timeLeft > 0 && ready) {
             
-            Rigidbody2D rb = player.rb;
-            rb.velocity = new Vector3(rb.velocity.x, strength);
+            if (yVel < maxFlySpeed)
+                rb.AddForce(new Vector2(0, strength));
 
             timeLeft -= Time.deltaTime;
 
@@ -64,8 +77,7 @@ public class jetPack : MonoBehaviour
         if (timeLeft < 0)
             ready = false;
 
-        
-        
+    
     }
 
 }

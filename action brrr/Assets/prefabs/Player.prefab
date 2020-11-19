@@ -654,8 +654,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1747a749643e2aa43a96cc3156fc7950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
-  jumpForce: 10.5
+  moveSpeed: 25
+  maxMoveSpeed: 14
+  jumpForce: 1000
   extraJumpsValue: 1
   jumpParticles: {fileID: 6362833687609406746, guid: 5e865a3cf361c5448b1d908f673632f0,
     type: 3}
@@ -1216,12 +1217,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a279ad1ee5941cd4a9f60de57af5f000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 5
+  strength: 25
   smokeParticles: {fileID: 489241540040934414, guid: 35819d1925d848e43b20700f0b94c0ba,
     type: 3}
   fireParticles: {fileID: 8143674147575222841}
-  timeMax: 2
-  rechargeSpeed: 2
+  maxFlySpeed: 9.5
+  timeMax: 1.5
   jetpackBar: {fileID: 0}
 --- !u!1 &8632845145874196997
 GameObject:
