@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject[] enemies;
     public GameObject boss;
+    public GameObject spawnParticles;
 
     public Transform left, right, top, bottom;
 
@@ -18,6 +19,7 @@ public class Spawner : MonoBehaviour
     private float playTime;
     public float maxRate;
 
+    //timers
     public float bossRate;
     private float bossTimer;
 
@@ -33,7 +35,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         if (timeBtwSpawn <= 0) {
-            Spawn();
+            StartCoroutine(SpawnEnemy());
             timeBtwSpawn = startTimeBtwSpawn;
         }
         else {
@@ -58,7 +60,7 @@ public class Spawner : MonoBehaviour
 
     }
 
-    void Spawn() {
+    IEnumerator SpawnEnemy() {
         int index = Random.Range(0, enemies.Length);
         GameObject enemyToSpawn = enemies[index];
 
@@ -70,6 +72,11 @@ public class Spawner : MonoBehaviour
 
         Vector3 pos = new Vector3(Random.Range(x1, x2), Random.Range(y1, y2));
 
+        //spawn particles before enemy
+        GameObject particles = Instantiate(spawnParticles, pos, Quaternion.identity);
+        Destroy(particles, 1.5f);
+
+        yield return new WaitForSeconds(1.5f);
         Instantiate(enemyToSpawn, pos, Quaternion.identity);
     }
 

@@ -16,12 +16,6 @@ public class deathMenu : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerHealth>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void respawnPlayer() {
         player.respawn();
         deadUI.SetActive(false);

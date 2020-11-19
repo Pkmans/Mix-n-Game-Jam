@@ -44,18 +44,20 @@ public class jetPack : MonoBehaviour
         if (timeLeft != timeMax && player.isGrounded) {
             jetpackBar.setMaxBar(timeMax);
             timeLeft = timeMax;
+
+            ready = true; 
         }
     
         //play smoke particles if key pressed
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
-            
+            if (!ready) return;
+
             if (yVel < -0.2f)
                 rb.velocity = (new Vector2(xVel, 0));
             
             Instantiate(smokeParticles, transform.position, smokeParticles.transform.rotation);
             fireParticles.Play();
 
-            ready = true; 
         }
 
         //use jetpack if holding down key

@@ -54,8 +54,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
 
-        Debug.Log(rb.velocity.x);
-
     }
 
     void FixedUpdate() {

@@ -17,6 +17,11 @@ public class PlayerHealth : MonoBehaviour
     private Transform respawnPoint;
     private GameObject enemSpawner, tntSpawner;
 
+    //shield 
+    public GameObject shield;
+    public float shieldDuration;
+    private bool invulnerable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,18 +33,22 @@ public class PlayerHealth : MonoBehaviour
         //reference to spawners
         enemSpawner = GameObject.Find("enemySpawner");
         tntSpawner = GameObject.Find("tntSpawner");
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        //player invulnerable if shield is active;
+        invulnerable = shield.activeSelf;
+
         if (currentHp <= 0) {
             die();
         }
     }
 
     public void takeDamage(int damage) {
+        if (invulnerable) return;
+
         currentHp -= damage;
         hpBar.setHealth(currentHp);
 
@@ -64,11 +73,26 @@ public class PlayerHealth : MonoBehaviour
         hpBar.setMaxHealth(maxHp);
     }
 
+    public void activateShield() {
+        StartCoroutine(activateShieldCoroutine());
+    }
+
+    IEnumerator activateShieldCoroutine() {
+        shield.SetActive(true);
+        Debug.Log("activated shield");
+
+        yield return new WaitForSeconds(shieldDuration);
+
+        shield.SetActive(false);
+    }
+
+
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.layer == 12) {
             takeDamage(maxHp);
         }
     }
 
+    
 
 }

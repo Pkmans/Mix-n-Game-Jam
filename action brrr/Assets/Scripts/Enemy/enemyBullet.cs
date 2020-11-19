@@ -36,6 +36,11 @@ public class enemyBullet : MonoBehaviour
         boom();
     }
 
+    void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.layer == 13)
+            boom();
+    }
+
     void boom() {
         Instantiate(particles, transform.position, Quaternion.identity);
         Destroy(gameObject);
