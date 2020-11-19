@@ -28,8 +28,6 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource jumpSound;
     private Animator anim;
 
-
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -56,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
 
+        Debug.Log(rb.velocity.x);
+
     }
 
     void FixedUpdate() {
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         //slow down player if no movement inputs
         if (moveInput == 0)
             slowDown();
- 
+        
     }
 
     void Jump() {
@@ -105,4 +105,21 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.x < -0.2f)
             rb.AddForce(new Vector2(moveSpeed, 0));
     }
+
+
+
+
+
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.CompareTag("movingPlatform"))
+            transform.parent = col.transform.parent;
+    }
+
+    void OnCollisionExit2D(Collision2D col) {
+        if (col.gameObject.CompareTag("movingPlatform"))
+            transform.parent = null;
+    }
+
+    
+
 }
