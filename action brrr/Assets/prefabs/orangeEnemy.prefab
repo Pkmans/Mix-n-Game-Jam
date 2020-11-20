@@ -257,7 +257,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 6362833687609406746, guid: 98cf35ab2a2ff9445baf89ace82112c7,
     type: 3}
+  acidParticles: {fileID: 3157770532912672645, guid: 6ac0aad9809249e449b341bcfbe8bf06,
+    type: 3}
+  scoreParticle: {fileID: 6984110659703009321, guid: a5f11d2eb83f6af47aa9df7df38b91de,
+    type: 3}
   hp: 3
+  scoreValue: 100
 --- !u!82 &7431584731615178366
 AudioSource:
   m_ObjectHideFlags: 0

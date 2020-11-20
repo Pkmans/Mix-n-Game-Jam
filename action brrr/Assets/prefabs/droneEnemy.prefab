@@ -190,6 +190,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 6362833687609406746, guid: cbfa60a5de090df4f8f1b035d44adf87,
     type: 3}
+  acidParticles: {fileID: 3157770532912672645, guid: 6ac0aad9809249e449b341bcfbe8bf06,
+    type: 3}
+  scoreParticle: {fileID: 6984110659703009321, guid: 7313ff0d74446114c9498f2148beaeef,
+    type: 3}
   hp: 3
   scoreValue: 150
 --- !u!50 &3813052945978034820

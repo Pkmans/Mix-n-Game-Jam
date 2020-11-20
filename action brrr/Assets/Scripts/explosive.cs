@@ -13,6 +13,7 @@ public class explosive : MonoBehaviour
     public AudioSource explodeSound;
 
     private cameraShake cameraShake;
+    private bool exploded;
 
     void Start() {
         cameraShake = GameObject.Find("Main Camera").GetComponent<cameraShake>();
@@ -27,10 +28,13 @@ public class explosive : MonoBehaviour
                 col.gameObject.GetComponent<shotGunBullets>().boom();
                 
             Explode();
+            exploded = true;
         }
     }
 
     void Explode() {
+        if (exploded) return;
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
 
         foreach(Collider2D col in colliders) {

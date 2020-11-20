@@ -6,21 +6,39 @@ using TMPro;
 
 public class scoreScript : MonoBehaviour
 {
-    public int scoreValue;
-    public int hiScore;
+    [HideInInspector]
+    public int scoreValue, highScore;
 
-    TextMeshProUGUI score;
+    private TextMeshProUGUI score;
+    public GameObject highscoreObject;
+    private TextMeshProUGUI highscore;
 
     // Start is called before the first frame update
     void Start()
     {
         score = GetComponent<TextMeshProUGUI>();
+        highscore = highscoreObject.GetComponent<TextMeshProUGUI>();
+
+        score.text = "0";
+        highscore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        score.text = "Score: " + scoreValue;
+        
     }
+
+    public void addScore(int scoreVal) {
+        scoreValue += scoreVal;
+        score.text = scoreValue.ToString();
+
+        if (scoreValue > PlayerPrefs.GetInt("HighScore", 0)) {
+            PlayerPrefs.SetInt("HighScore", scoreValue);
+            highscore.text = scoreValue.ToString();
+        }
+    }
+
+
 
 }

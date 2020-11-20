@@ -52,8 +52,6 @@ public class shotGun : MonoBehaviour
     }
 
     void Shoot() {
-        Debug.Log(dir);
-
         //bullet spread
         for (int i = 0; i < numOfBullets; i++) {
             GameObject bullet = Instantiate(bulletPrefab, gunTip.position, transform.rotation);

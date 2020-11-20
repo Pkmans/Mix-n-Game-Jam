@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class enemyHealth : MonoBehaviour
 {
-    public GameObject deathParticles;
+    public GameObject deathParticles, acidParticles, scoreParticle;
     public int hp = 3;
 
     public int scoreValue = 100;
 
     private SpriteRenderer body;
     private scoreScript scoreScript;
+
 
     void Start() {
         body = GetComponent<SpriteRenderer>();
@@ -35,8 +36,11 @@ public class enemyHealth : MonoBehaviour
             takeDamage(1);
         }
 
-        if (col.gameObject.layer == 12)
+        if (col.gameObject.layer == 12) {
             Die();
+            Instantiate(acidParticles, transform.position, acidParticles.transform.rotation);
+        }
+            
     }
 
     public void takeDamage(int dmg) {
@@ -47,7 +51,9 @@ public class enemyHealth : MonoBehaviour
 
     void Die() {
         Instantiate(deathParticles, transform.position, deathParticles.transform.rotation);
-        scoreScript.scoreValue += scoreValue;
+        Instantiate(scoreParticle, transform.position, scoreParticle.transform.rotation);
+        
+        scoreScript.addScore(scoreValue);
         Destroy(gameObject);
     }
 
@@ -61,4 +67,5 @@ public class enemyHealth : MonoBehaviour
         tmp.a = 1f;
         body.color = tmp;
     }
+
 }

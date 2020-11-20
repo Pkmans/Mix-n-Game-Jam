@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6360771253263503395}
   - component: {fileID: 6360771253263503396}
   - component: {fileID: 6360771253263503397}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: fatEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,6 +159,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticles: {fileID: 6362833687609406746, guid: cbfa60a5de090df4f8f1b035d44adf87,
+    type: 3}
+  acidParticles: {fileID: 3157770532912672645, guid: 6ac0aad9809249e449b341bcfbe8bf06,
+    type: 3}
+  scoreParticle: {fileID: 6984110659703009321, guid: f867dec55ae3557469b2991cff4b954b,
     type: 3}
   hp: 15
   scoreValue: 500
@@ -332,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6360771254325264137}
   - component: {fileID: 6360771254325264136}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,18 +9,19 @@ public class PlayerHealth : MonoBehaviour
     private int currentHp;
     public HealthBar hpBar;
 
+    public GameObject acidParticles;
+
+    //random
     public AudioSource hurtSound;
-
-    public GameObject deadUI;
     public cameraShake cameraShake;
-
     private Transform respawnPoint;
-    private GameObject enemSpawner, itemSpawner;
 
     //shield 
     public GameObject shield;
     public float shieldDuration;
     private bool invulnerable;
+
+    private GameManager GameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
         respawnPoint = GameObject.Find("respawn Point").transform;
 
-        //reference to spawners
-        enemSpawner = GameObject.Find("enemySpawner");
-        itemSpawner = GameObject.Find("itemSpawner");
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -59,10 +58,7 @@ public class PlayerHealth : MonoBehaviour
 
     void die() {
         transform.position = new Vector3(50, 50, 0);
-        deadUI.SetActive(true);
-
-        enemSpawner.SetActive(false);
-        itemSpawner.SetActive(false);
+        GameManager.onPlayerDeath();
     }
 
     public void respawn() {
@@ -87,9 +83,18 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
+    void takeAcidDamage(int damage) {
+        currentHp -= damage;
+        hpBar.setHealth(currentHp);
+
+        hurtSound.Play();
+
+        StartCoroutine(cameraShake.Shake(0.1f, 0.2f));
+    }
+
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.layer == 12) {
-            takeDamage(maxHp);
+            takeAcidDamage(maxHp);
         }
     }
 
