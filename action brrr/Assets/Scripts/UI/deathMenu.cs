@@ -9,16 +9,10 @@ public class deathMenu : MonoBehaviour
     public GameObject deadUI;
     private PlayerHealth player;
 
-
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerHealth>();
-    }
-
-    public void respawnPlayer() {
-        player.respawn();
-        deadUI.SetActive(false);
     }
 
     public void restart() {
