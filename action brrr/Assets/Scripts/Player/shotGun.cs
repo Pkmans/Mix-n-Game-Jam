@@ -6,29 +6,36 @@ public class shotGun : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform gunTip;
-
+    public float spread;
+    public float numOfBullets = 3f;
+ 
     private float timeBtwShots;
     public float startTimeBtwShots;
 
     private AudioSource shotSound;
 
-    public float spread;
+    //knockback Force
+    public float knockbackForce;
+    private PlayerMovement player;
+    private Vector2 dir;
+    
+
 
     // Start is called before the first frame update
     void Start()
     {
         shotSound = GetComponent<AudioSource>();
-        
+        player = GetComponentInParent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //rotate gun to mouse
-        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        diff.Normalize();
+        dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        dir.Normalize();
 
-        float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        float rotationZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
 
@@ -36,29 +43,26 @@ public class shotGun : MonoBehaviour
             transform.localRotation = Quaternion.Euler(180f, 0f, -rotationZ);
         }
 
-
         //shoot bullets
-        if (timeBtwShots <= 0) {
-            if (Input.GetMouseButtonDown(0)) {
-
-                //bullet spread
-                GameObject topBullet = Instantiate(bulletPrefab, gunTip.position, transform.rotation);
-                topBullet.transform.Rotate(0, 0, spread);
-       
-
-                GameObject middleBullet = Instantiate(bulletPrefab, gunTip.position, transform.rotation);
-
-
-                GameObject bottomBullet = Instantiate(bulletPrefab, gunTip.position, transform.rotation);
-                bottomBullet.transform.Rotate(0, 0, -spread);
-   
-                
-                timeBtwShots = startTimeBtwShots;
-
-                shotSound.Play();
-            }
-        } else {
+        if (timeBtwShots <= 0 && Input.GetMouseButtonDown(0)) {
+            Shoot();
+            timeBtwShots = startTimeBtwShots;
+        } else
             timeBtwShots -= Time.deltaTime;
+    }
+
+    void Shoot() {
+        Debug.Log(dir);
+
+        //bullet spread
+        for (int i = 0; i < numOfBullets; i++) {
+            GameObject bullet = Instantiate(bulletPrefab, gunTip.position, transform.rotation);
+            bullet.transform.Rotate(0, 0, Random.Range(-spread, spread));
         }
+
+        shotSound.Play();
+
+        //knockback Force
+        player.rb.AddForce(-dir * knockbackForce, ForceMode2D.Impulse);
     }
 }

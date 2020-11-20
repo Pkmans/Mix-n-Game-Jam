@@ -1179,8 +1179,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7122291697024722063, guid: f2b0902b7993dee47bf1ab5e19a5a574,
     type: 3}
   gunTip: {fileID: 8632845145146073624}
-  startTimeBtwShots: 0.4
   spread: 5
+  numOfBullets: 5
+  startTimeBtwShots: 0.8
+  knockbackForce: 15
 --- !u!82 &8632845145584684849
 AudioSource:
   m_ObjectHideFlags: 0

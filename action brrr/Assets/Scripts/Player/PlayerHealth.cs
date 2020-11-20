@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public cameraShake cameraShake;
 
     private Transform respawnPoint;
-    private GameObject enemSpawner, tntSpawner;
+    private GameObject enemSpawner, itemSpawner;
 
     //shield 
     public GameObject shield;
@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
         //reference to spawners
         enemSpawner = GameObject.Find("enemySpawner");
-        tntSpawner = GameObject.Find("tntSpawner");
+        itemSpawner = GameObject.Find("itemSpawner");
     }
 
     // Update is called once per frame
@@ -62,7 +62,7 @@ public class PlayerHealth : MonoBehaviour
         deadUI.SetActive(true);
 
         enemSpawner.SetActive(false);
-        tntSpawner.SetActive(false);
+        itemSpawner.SetActive(false);
     }
 
     public void respawn() {

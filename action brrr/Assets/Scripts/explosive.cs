@@ -39,7 +39,9 @@ public class explosive : MonoBehaviour
             //explosive force
             if (rb) {
                 Vector2 dir = rb.position - GetComponent<Rigidbody2D>().position;
-                rb.AddForce(dir, ForceMode2D.Impulse);
+                dir.Normalize();
+                rb.velocity = Vector2.zero;
+                rb.AddForce(dir * strength, ForceMode2D.Impulse);
             }
 
             //damage player

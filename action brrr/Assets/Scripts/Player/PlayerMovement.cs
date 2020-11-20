@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
 
+    //flip sprite
+    private SpriteRenderer sprite;
+    private bool facingRight = true;
+
     [HideInInspector]
     public Rigidbody2D rb;
 
@@ -32,11 +36,11 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        extraJumps = extraJumpsValue;
-
         jumpSound = GetComponent<AudioSource>();
-
         anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+        
+        extraJumps = extraJumpsValue;
     }
 
     // Update is called once per frame
@@ -57,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
-        
         //move input
         Move();
 
@@ -83,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Move() {
+        // Flip();
+
         float xVel = rb.velocity.x;
 
         if (Mathf.Abs(xVel) < maxMoveSpeed)
@@ -104,9 +109,20 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(new Vector2(moveSpeed, 0));
     }
 
+    void Flip() {
+        if (facingRight && moveInput < 0) {
+            facingRight = !facingRight;
+            sprite.flipX = !sprite.flipX;
+        }
+
+        if (!facingRight && moveInput > 0) {
+            facingRight = !facingRight;
+            sprite.flipX = !sprite.flipX;
+        }
+    }
 
 
-
+    ///collision events
 
     void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.CompareTag("movingPlatform"))
@@ -117,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.CompareTag("movingPlatform"))
             transform.parent = null;
     }
-
     
 
 }
