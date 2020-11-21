@@ -2,37 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rocketBullets : MonoBehaviour
+public class bombScript : MonoBehaviour
 {
-    public float strength = 5f;
-    public float radius = 3.5f;
+    public AudioSource hitSound;
 
-    public AudioSource explodeSound;
-
-    public float speed;
+    public float force;
     public GameObject particles;
 
     private Vector3 bulletDir;
+    private Rigidbody2D rb;
 
-    //camera
-    private cameraShake cameraShake;
+    //explosions
+    public float strength;
+    public float radius;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        hitSound = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody2D>();
+
         bulletDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         bulletDir.z = 0;
-        bulletDir.Normalize();
-
-        cameraShake = GameObject.Find("Main Camera").GetComponent<cameraShake>();
+        bulletDir.Normalize();        
 
         Destroy(gameObject, 3f);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position += bulletDir * speed * Time.deltaTime;
+        rb.AddForce(bulletDir * force);
     }
 
     void OnCollisionEnter2D(Collision2D col) {
@@ -61,10 +58,9 @@ public class rocketBullets : MonoBehaviour
             
         }
 
-        explodeSound.Play();
-        Instantiate(particles, transform.position, Quaternion.identity);
 
-        StartCoroutine(cameraShake.Shake(0.25f, 0.15f));
+        hitSound.Play();
+        Instantiate(particles, transform.position, Quaternion.identity);
 
         //hide before delay destroying
         GetComponent<SpriteRenderer>().enabled = false;
@@ -72,4 +68,10 @@ public class rocketBullets : MonoBehaviour
         GetComponent<CircleCollider2D>().enabled = false;
         Destroy(gameObject, 0.5f);
     }
+
+    
+    // void OnDrawGizmos() {
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawWireSphere(transform.position, radius);
+    // }
 }

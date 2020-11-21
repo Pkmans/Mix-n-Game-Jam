@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Move() {
-        // Flip();
+        Flip();
 
         float xVel = rb.velocity.x;
 
@@ -99,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         if (xVel < -0.2f && moveInput > 0)
             rb.AddForce(new Vector2(moveInput * moveSpeed * turnSpeed, 0));
 
-        // Debug.Log(rb.velocity.x);
     }
 
     void slowDown() {

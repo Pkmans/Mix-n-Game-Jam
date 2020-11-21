@@ -49,7 +49,7 @@ public class orangeEnemy : MonoBehaviour
         dir.z = 0;
         dir.Normalize();
 
-        rb.velocity = new Vector2(dir.x * sidewaysForce, jumpForce);
+        rb.AddForce(new Vector2(dir.x * sidewaysForce, jumpForce));
 
         //effets
         anim.SetTrigger("jump");

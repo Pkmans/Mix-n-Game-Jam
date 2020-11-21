@@ -31,17 +31,7 @@ public class shotGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //rotate gun to mouse
-        dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        dir.Normalize();
-
-        float rotationZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
-
-        if (rotationZ < -90 || rotationZ > 90) {
-            transform.localRotation = Quaternion.Euler(180f, 0f, -rotationZ);
-        }
+        rotateGun();
 
         //shoot bullets
         if (timeBtwShots <= 0 && Input.GetMouseButtonDown(0)) {
@@ -62,5 +52,19 @@ public class shotGun : MonoBehaviour
 
         //knockback Force
         player.rb.AddForce(-dir * knockbackForce, ForceMode2D.Impulse);
+    }
+
+    void rotateGun() {
+        //rotate gun to mouse
+        dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        dir.Normalize();
+
+        float rotationZ = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+
+        if (rotationZ < -90 || rotationZ > 90) {
+            transform.localRotation = Quaternion.Euler(180f, 0f, -rotationZ);
+        }
     }
 }

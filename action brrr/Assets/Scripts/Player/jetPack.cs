@@ -8,6 +8,8 @@ public class jetPack : MonoBehaviour
     public GameObject smokeParticles;
     public ParticleSystem fireParticles;
 
+    private AudioSource jetpackSound;
+
     public float maxFlySpeed;
 
     public float timeMax;
@@ -23,6 +25,7 @@ public class jetPack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        jetpackSound = GetComponent<AudioSource>();
         player = GetComponentInParent<PlayerMovement>();
         rb = player.rb;
 
@@ -54,10 +57,11 @@ public class jetPack : MonoBehaviour
 
             if (yVel < -0.2f)
                 rb.velocity = (new Vector2(xVel, 0));
-            
+
+            //effects
             Instantiate(smokeParticles, transform.position, smokeParticles.transform.rotation);
             fireParticles.Play();
-
+            jetpackSound.Play();
         }
 
         //use jetpack if holding down key
@@ -74,6 +78,7 @@ public class jetPack : MonoBehaviour
 
         } else {
             fireParticles.Stop();
+            jetpackSound.Stop();
         }
 
         if (timeLeft < 0)

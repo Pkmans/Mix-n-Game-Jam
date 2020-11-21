@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletScript : MonoBehaviour
+public class shurikenBullet : MonoBehaviour
 {
     public AudioSource hitSound;
 
@@ -10,23 +10,21 @@ public class bulletScript : MonoBehaviour
     public GameObject particles;
 
     private Vector3 bulletDir;
+    private float degreesPerSec = 1080f;
 
     // Start is called before the first frame update
     void Start()
     {
-        bulletDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        bulletDir.z = 0;
-        bulletDir.Normalize();
-
         Destroy(gameObject, 3f);
-
         hitSound = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position += bulletDir * speed * Time.deltaTime;
+        spinBullet();
     }
 
     void OnCollisionEnter2D(Collision2D col) {
@@ -42,5 +40,16 @@ public class bulletScript : MonoBehaviour
         GetComponent<TrailRenderer>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = false;
         Destroy(gameObject, 0.5f);
+    }
+
+    void spinBullet() {
+    
+        float rotateAmount = degreesPerSec * Time.deltaTime; 
+        float curRotate = transform.localRotation.eulerAngles.z; 
+        transform.localRotation = Quaternion.Euler(new Vector3(0, 0, curRotate + rotateAmount));
+    }
+
+    public void setDir(Vector3 dir) {
+        bulletDir = dir;
     }
 }

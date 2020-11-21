@@ -99,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 150
+  m_Mass: 4.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2.5
@@ -213,7 +213,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7122291697024722063, guid: c784a2188cb1749479da1491be9f73e1,
     type: 3}
   gunTip: {fileID: 6360771253923371389}
-  startTimeBtwShots: 0.5
+  startTimeBtwShots: 0.42
 --- !u!1 &6360771253923371386
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.85
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
