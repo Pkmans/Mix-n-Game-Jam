@@ -8,6 +8,8 @@ public class characterManager : MonoBehaviour
     public bool rifleWeapon;
     public bool shotgunWeapon;
     public bool rocketWeapon;
+    public bool shurikenWeapon;
+    public bool bombWeapon;
 
     private GameObject player;
 
@@ -24,7 +26,7 @@ public class characterManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         if (player)
-            player.GetComponent<weaponChooser>().chooseWeapon(rifleWeapon, shotgunWeapon, rocketWeapon);
+            player.GetComponent<weaponChooser>().chooseWeapon(rifleWeapon, shotgunWeapon, rocketWeapon, shurikenWeapon, bombWeapon);
     }
 
     

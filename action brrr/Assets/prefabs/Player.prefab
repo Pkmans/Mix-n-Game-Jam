@@ -1120,9 +1120,9 @@ GameObject:
   - component: {fileID: 8632845145198842968}
   - component: {fileID: 8632845145198842970}
   - component: {fileID: 8632845145198842973}
+  - component: {fileID: 6720706805595637877}
   - component: {fileID: 8632845145198842972}
   - component: {fileID: 8632845145198842975}
-  - component: {fileID: 6720706805595637877}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -1294,6 +1294,23 @@ MonoBehaviour:
   cameraShake: {fileID: 0}
   shield: {fileID: 816889230536195663}
   shieldDuration: 6
+--- !u!114 &6720706805595637877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8632845145198842967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e466d41d729dc4eb7fdfeec2654469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rifleObject: {fileID: 8632845146205130976}
+  shotgunObject: {fileID: 8632845145584684812}
+  rocketObject: {fileID: 995389825936149770}
+  shurikenObject: {fileID: 7016240172505492609}
+  bombObject: {fileID: 2078754314481458911}
 --- !u!82 &8632845145198842972
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1409,21 +1426,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6720706805595637877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8632845145198842967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01e466d41d729dc4eb7fdfeec2654469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rifleObject: {fileID: 8632845146205130976}
-  shotgunObject: {fileID: 8632845145584684812}
-  rocketObject: {fileID: 995389825936149770}
 --- !u!1 &8632845145408425351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,7 +1965,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7122291697024722063, guid: f0f65246d0894c844b287d77435f5e89,
     type: 3}
   gunTip: {fileID: 8632845144866132484}
-  startTimeBtwShots: 0.1
+  startTimeBtwShots: 0.17
 --- !u!82 &8632845146205130981
 AudioSource:
   m_ObjectHideFlags: 0

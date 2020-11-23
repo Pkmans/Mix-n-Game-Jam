@@ -21,6 +21,20 @@ public class gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rotateWeapon();
+
+        //shoot bullet
+        if (timeBtwShots <= 0 && Input.GetMouseButton(0)) {
+                Instantiate(bulletPrefab, gunTip.position, transform.rotation);
+                timeBtwShots = startTimeBtwShots;
+
+                shotSound.Play();
+        } else {
+            timeBtwShots -= Time.deltaTime;
+        }
+    }
+
+    void rotateWeapon() {
         //rotate gun to mouse
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         diff.Normalize();
@@ -31,19 +45,6 @@ public class gun : MonoBehaviour
 
         if (rotationZ < -90 || rotationZ > 90) {
             transform.localRotation = Quaternion.Euler(180f, 0f, -rotationZ);
-        }
-
-
-        //shoot bullet
-        if (timeBtwShots <= 0) {
-            if (Input.GetMouseButtonDown(0)) {
-                Instantiate(bulletPrefab, gunTip.position, transform.rotation);
-                timeBtwShots = startTimeBtwShots;
-
-                shotSound.Play();
-            }
-        } else {
-            timeBtwShots -= Time.deltaTime;
         }
     }
 }
