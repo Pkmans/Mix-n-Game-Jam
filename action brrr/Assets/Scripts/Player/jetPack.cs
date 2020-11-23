@@ -55,8 +55,8 @@ public class jetPack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
             if (!ready) return;
 
-            if (yVel < -0.2f)
-                rb.velocity = (new Vector2(xVel, 0));
+            if (yVel < -8f)
+                rb.velocity = (new Vector2(xVel, -4f));
 
             //effects
             Instantiate(smokeParticles, transform.position, smokeParticles.transform.rotation);

@@ -75,7 +75,6 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator activateShieldCoroutine() {
         shield.SetActive(true);
-        Debug.Log("activated shield");
 
         yield return new WaitForSeconds(shieldDuration);
 

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSound: {fileID: 691609906449028337}
   speed: 20
-  particles: {fileID: 6362833687609406746, guid: cbfa60a5de090df4f8f1b035d44adf87,
+  particles: {fileID: 6362833687609406746, guid: fc2da77bec1b0184580b997a5509626c,
     type: 3}
 --- !u!58 &-6394890826401657849
 CircleCollider2D:
