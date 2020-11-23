@@ -123,15 +123,15 @@ public class PlayerMovement : MonoBehaviour
 
     ///collision events
 
-    void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.CompareTag("movingPlatform"))
-            transform.parent = col.transform.parent;
-    }
+    // void OnCollisionEnter2D(Collision2D col) {
+    //     if (col.gameObject.CompareTag("movingPlatform"))
+    //         transform.parent = col.transform.parent;
+    // }
 
-    void OnCollisionExit2D(Collision2D col) {
-        if (col.gameObject.CompareTag("movingPlatform"))
-            transform.parent = null;
-    }
+    // void OnCollisionExit2D(Collision2D col) {
+    //     if (col.gameObject.CompareTag("movingPlatform"))
+    //         transform.parent = null;
+    // }
     
 
 }

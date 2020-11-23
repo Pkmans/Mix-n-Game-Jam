@@ -13,11 +13,19 @@ public class characterManager : MonoBehaviour
 
     private GameObject player;
 
+    private static GameObject instance;
+
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (instance == null) {
+            instance = gameObject; 
+        } else {
+            Destroy(instance);
+            instance = gameObject;
+        }
 
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
