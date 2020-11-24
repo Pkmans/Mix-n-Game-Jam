@@ -34,6 +34,14 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(true);
     }
 
+    public void quitGame() {
+        Application.Quit();
+    }
+
+    public void openYoutube() {
+        Application.OpenURL("https://www.youtube.com/watch?v=3PlvK2dmGiw");
+    }
+
     public void rifle() {
         characterManager.rifleWeapon = true;
         characterManager.shotgunWeapon = false;

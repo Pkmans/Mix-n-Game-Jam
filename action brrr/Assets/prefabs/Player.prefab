@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 29
-  maxMoveSpeed: 14
+  maxMoveSpeed: 12
   jumpForce: 1000
   extraJumpsValue: 1
   jumpParticles: {fileID: 6362833687609406746, guid: 5e865a3cf361c5448b1d908f673632f0,

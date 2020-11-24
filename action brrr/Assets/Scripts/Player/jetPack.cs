@@ -42,7 +42,6 @@ public class jetPack : MonoBehaviour
         float xVel = rb.velocity.x;
         float yVel = rb.velocity.y;
 
-
         //reset jetpack duration if grounded
         if (timeLeft != timeMax && player.isGrounded) {
             jetpackBar.setMaxBar(timeMax);
@@ -83,7 +82,6 @@ public class jetPack : MonoBehaviour
 
         if (timeLeft < 0)
             ready = false;
-
     
     }
 

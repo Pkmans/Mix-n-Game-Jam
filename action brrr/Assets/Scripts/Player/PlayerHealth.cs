@@ -53,7 +53,7 @@ public class PlayerHealth : MonoBehaviour
 
         hurtSound.Play();
 
-        StartCoroutine(cameraShake.Shake(0.1f, 0.2f));
+        StartCoroutine(cameraShake.Shake(0.15f, 0.3f));
     }
 
     void die() {

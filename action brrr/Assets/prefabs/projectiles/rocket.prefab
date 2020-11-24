@@ -337,9 +337,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357df1c24b571464c96de38fe3857a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 15
-  radius: 4.5
+  strength: 18
+  radius: 4.8
   explodeSound: {fileID: 691609906449028337}
-  speed: 14
+  speed: 15
   particles: {fileID: 489241540040934414, guid: 15d27730c29eb834eb8608c9114dfc66,
     type: 3}
