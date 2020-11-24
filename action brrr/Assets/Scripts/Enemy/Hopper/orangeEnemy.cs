@@ -20,11 +20,15 @@ public class orangeEnemy : MonoBehaviour
     private Animator anim;
     private AudioSource jumpSound;
 
+    private SpriteRenderer sprite;
+    private bool facingRight = true;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         jumpSound = GetComponent<AudioSource>();
+        sprite = GetComponent<SpriteRenderer>();
 
         player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
@@ -39,9 +43,8 @@ public class orangeEnemy : MonoBehaviour
             jump();
             timeBtwJumps = startTimeBtwJumps;
         }
-        else {
+        else
             timeBtwJumps -= Time.deltaTime;
-        }
     }
 
     void jump() {
@@ -49,6 +52,8 @@ public class orangeEnemy : MonoBehaviour
         dir.z = 0;
         dir.Normalize();
 
+        //flip and jump
+        Flip(dir.x);
         rb.AddForce(new Vector2(dir.x * sidewaysForce, jumpForce));
 
         //effets
@@ -58,9 +63,19 @@ public class orangeEnemy : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.CompareTag("Player")) {
+        if (col.gameObject.CompareTag("Player"))
             col.gameObject.GetComponent<PlayerHealth>().takeDamage(1);
-        }
     }
 
+    void Flip(float dir) {
+        if (facingRight && dir < 0) {
+            sprite.flipX = !sprite.flipX;
+            facingRight = !facingRight;
+        }
+            
+        if (!facingRight && dir > 0) {
+            sprite.flipX = !sprite.flipX;
+            facingRight = !facingRight;
+        }
+    }
 }

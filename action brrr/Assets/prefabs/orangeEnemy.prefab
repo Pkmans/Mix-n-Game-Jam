@@ -46,7 +46,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
-  m_Color: {r: 1, g: 0.8671192, b: 0.740566, a: 1}
+  m_Color: {r: 1, g: 0.6994328, b: 0, a: 1}
   m_Intensity: 0.9
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
@@ -149,7 +149,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6972c780fe36e2e40b2c379950eaf05e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 803327a5323d61443a815aea39e2d502, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -173,18 +173,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01254797, y: -0.0941115}
+  m_Offset: {x: 0.15436405, y: -0.10087818}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 1.63}
+    oldSize: {x: 2.56, y: 2.33}
     newSize: {x: 2.56, y: 1.63}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.233746, y: 1.4417771}
+  m_Size: {x: 1.7916545, y: 1.9831136}
   m_EdgeRadius: 0
 --- !u!50 &6887928285611314762
 Rigidbody2D:
@@ -220,10 +220,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 1000
-  sidewaysForce: 750
+  sidewaysForce: 790
   jumpParticles: {fileID: 6362833687609406746, guid: 5e865a3cf361c5448b1d908f673632f0,
     type: 3}
-  startTimeBtwJumps: 2
+  startTimeBtwJumps: 1.75
 --- !u!95 &6887928285611314763
 Animator:
   serializedVersion: 3
