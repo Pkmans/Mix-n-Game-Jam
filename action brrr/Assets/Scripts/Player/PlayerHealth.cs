@@ -54,28 +54,27 @@ public class PlayerHealth : MonoBehaviour
 
         currentHp -= damage;
         hpBar.setHealth(currentHp);
+        hpBar.damageAnimation();
 
         hurtSound.Play();
 
         if (currentHp <= 0)
-            StartCoroutine(die());
+            die();
         
         //add a knockback effect?
 
         StartCoroutine(cameraShake.Shake(0.15f, 0.2f));
     }
 
-    IEnumerator die() {
+    void die() {
         dead = true;
         BGM.volume = 0.02f;
 
         //death particles & screenshake
         Instantiate(deathParticles, transform.position, deathParticles.transform.rotation);
-        StartCoroutine(cameraShake.Shake(0.4f, 0.55f));
         playerDeath.Play();
         
-        sprite.enabled = false;
-        yield return new WaitForSeconds(0.8f);
+        Destroy(gameObject);
   
         GameManager.onPlayerDeath();
     }
@@ -100,11 +99,12 @@ public class PlayerHealth : MonoBehaviour
 
         currentHp -= damage;
         hpBar.setHealth(currentHp);
+        hpBar.damageAnimation();
 
         hurtSound.Play();
 
         if (currentHp <= 0)
-            StartCoroutine(die());
+            die();
 
         StartCoroutine(cameraShake.Shake(0.1f, 0.2f));
     }

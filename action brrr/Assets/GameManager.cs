@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public GameObject player;
 
+    public cameraShake cameraShake;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void onPlayerDeath() {
+        StartCoroutine(cameraShake.Shake(0.4f, 0.6f));
+        Invoke("doStuff", 0.8f);
+    }
+
+    void doStuff() {
         setUI();
 
         Destroy(player);

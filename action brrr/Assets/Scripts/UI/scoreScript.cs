@@ -13,11 +13,14 @@ public class scoreScript : MonoBehaviour
     public GameObject highscoreObject;
     private TextMeshProUGUI highscore;
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         score = GetComponent<TextMeshProUGUI>();
         highscore = highscoreObject.GetComponent<TextMeshProUGUI>();
+        anim = GetComponent<Animator>();
 
         score.text = "0";
         highscore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
@@ -30,6 +33,8 @@ public class scoreScript : MonoBehaviour
     }
 
     public void addScore(int scoreVal) {
+        anim.SetTrigger("add");
+
         scoreValue += scoreVal;
         score.text = scoreValue.ToString();
 

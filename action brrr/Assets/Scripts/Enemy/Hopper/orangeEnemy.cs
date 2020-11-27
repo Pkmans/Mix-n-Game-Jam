@@ -34,6 +34,7 @@ public class orangeEnemy : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         game = GameObject.Find("GameManager").GetComponent<GameManager>();
 
+        if (!game.player) return;
 
         player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();

@@ -25,6 +25,7 @@ public class greenEnemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         game = GameObject.Find("GameManager").GetComponent<GameManager>();
 
+        if (!game.player) return;
 
         player = GameObject.Find("Player").transform;
     }

@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d079d0423b0a1498fc15263722f3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 15
-  radius: 5
+  strength: 22
+  radius: 5.3
   particles: {fileID: 489241540040934414, guid: 15d27730c29eb834eb8608c9114dfc66,
     type: 3}
   explodeSound: {fileID: -5572634364601013750}

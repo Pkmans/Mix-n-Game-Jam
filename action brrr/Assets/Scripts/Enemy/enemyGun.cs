@@ -18,8 +18,12 @@ public class enemyGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").transform;
+        
         game = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        if (!game.player) return;
+        
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame

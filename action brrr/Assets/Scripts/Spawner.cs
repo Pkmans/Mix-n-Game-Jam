@@ -6,7 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public GameObject[] enemies;
     public GameObject boss;
-    public GameObject spawnParticles;
+    public GameObject[] spawnParticles;
+    public GameObject bossParticles;
 
     public Transform left, right, top, bottom;
 
@@ -30,8 +31,6 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         bossTimer = bossRate;
-        timeBtwSpawn = startTimeBtwSpawn;
-
     }
 
     // Update is called once per frame
@@ -54,7 +53,7 @@ public class Spawner : MonoBehaviour
 
         //spawn boss at intervals
         if(bossTimer <= 0 && curAmount < maxAmount) {
-            spawnBoss();
+            StartCoroutine(spawnBoss());
             resetBossTimer();
         } else
             bossTimer -= Time.deltaTime;
@@ -74,20 +73,25 @@ public class Spawner : MonoBehaviour
         Vector3 pos = new Vector3(Random.Range(x1, x2), Random.Range(y1, y2));
 
         //spawn particles before enemy
-        GameObject particles = Instantiate(spawnParticles, pos, Quaternion.identity);
+        GameObject particles = Instantiate(spawnParticles[index], pos, Quaternion.identity);
         Destroy(particles, 1.5f);
 
         yield return new WaitForSeconds(1.5f);
         Instantiate(enemyToSpawn, pos, Quaternion.identity);
     }
 
-    void spawnBoss() {
+    IEnumerator spawnBoss() {
         float x1 = left.position.x;
         float x2 = right.position.x;
 
         Vector3 pos = new Vector3(Random.Range(x1, x2), top.position.y);
 
-        GameObject bossInstance = Instantiate(boss, pos, Quaternion.identity);
+        //spawn particles before boss+
+        GameObject particles = Instantiate(bossParticles, pos, Quaternion.identity);
+        Destroy(particles, 1.5f);
+
+        yield return new WaitForSeconds(1.5f);
+        Instantiate(boss, pos, Quaternion.identity);
 
         curAmount += 1;
     }

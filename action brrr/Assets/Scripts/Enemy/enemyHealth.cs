@@ -13,12 +13,15 @@ public class enemyHealth : MonoBehaviour
     private scoreScript scoreScript;
 
     private Spawner spawner;
+    private AudioSource deathSound;
 
 
     void Start() {
         body = GetComponent<SpriteRenderer>();
         scoreScript = GameObject.Find("Score").GetComponent<scoreScript>();
         spawner = GameObject.Find("enemySpawner").GetComponent<Spawner>();
+
+        deathSound = GameObject.Find("enemyDeath").GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -56,8 +59,12 @@ public class enemyHealth : MonoBehaviour
         Instantiate(deathParticles, transform.position, deathParticles.transform.rotation);
         Instantiate(scoreParticle, transform.position, scoreParticle.transform.rotation);
         
+        
         if (gameObject.name == "fatEnemy")
             spawner.curAmount -= 1;
+
+        //death sound here
+        deathSound.Play();
 
         scoreScript.addScore(scoreValue);
         Destroy(gameObject);
