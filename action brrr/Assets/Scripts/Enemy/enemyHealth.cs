@@ -60,7 +60,7 @@ public class enemyHealth : MonoBehaviour
         Instantiate(scoreParticle, transform.position, scoreParticle.transform.rotation);
         
         
-        if (gameObject.name == "fatEnemy")
+        if (gameObject.name == "fatEnemy(Clone)")
             spawner.curAmount -= 1;
 
         //death sound here

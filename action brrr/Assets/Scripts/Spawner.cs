@@ -24,7 +24,6 @@ public class Spawner : MonoBehaviour
     public float bossRate;
     private float bossTimer;
     private float maxAmount = 2;
-    [HideInInspector]
     public float curAmount;
 
     // Start is called before the first frame update

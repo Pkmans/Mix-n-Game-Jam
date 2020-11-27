@@ -39,7 +39,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void openYoutube() {
-        Application.OpenURL("https://www.youtube.com/watch?v=3PlvK2dmGiw");
+        Application.OpenURL("https://www.youtube.com/channel/UCBNWW0KtvzoAYpPp-A2OKGw?view_as=subscriber");
     }
 
     public void rifle() {
