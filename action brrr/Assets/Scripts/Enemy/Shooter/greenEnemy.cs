@@ -15,17 +15,24 @@ public class greenEnemy : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private GameManager game;
+
+
     // Start is called before the first frame update
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        game = GameObject.Find("GameManager").GetComponent<GameManager>();
+
 
         player = GameObject.Find("Player").transform;
     }
 
     void Update() 
     {
+        if (!game.player) return;
+
         dir = player.position - transform.position;
         dir.z = 0;
         dir.Normalize();
@@ -34,6 +41,8 @@ public class greenEnemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!game.player) return;
+
         Flip();
         Move();
     }

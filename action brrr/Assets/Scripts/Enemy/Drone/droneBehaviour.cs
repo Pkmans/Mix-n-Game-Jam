@@ -13,11 +13,14 @@ public class droneBehaviour : MonoBehaviour
     private float timeBtwJumps;
 
     private Rigidbody2D rb;
+    private GameManager game;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        game = GameObject.Find("GameManager").GetComponent<GameManager>();
         player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -25,6 +28,8 @@ public class droneBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!game.player) return;
+
         followPlayer();
 
         if (timeBtwJumps <= 0) {

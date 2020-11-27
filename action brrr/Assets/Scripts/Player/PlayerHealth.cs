@@ -9,10 +9,10 @@ public class PlayerHealth : MonoBehaviour
     private int currentHp;
     public HealthBar hpBar;
 
-    public GameObject acidParticles;
+    public GameObject deathParticles;
 
     //random
-    public AudioSource hurtSound;
+    public AudioSource hurtSound, playerDeath;
     public cameraShake cameraShake;
     private Transform respawnPoint;
 
@@ -22,16 +22,22 @@ public class PlayerHealth : MonoBehaviour
     private bool invulnerable;
 
     private GameManager GameManager;
+    private bool dead;
+    private AudioSource BGM;
+
+    private SpriteRenderer sprite;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
+        respawnPoint = GameObject.Find("respawn Point").transform;
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        BGM = GameObject.Find("BGM").GetComponent<AudioSource>();
+
         currentHp = maxHp;
         hpBar.setMaxHealth(maxHp);
-
-        respawnPoint = GameObject.Find("respawn Point").transform;
-
-        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -39,35 +45,42 @@ public class PlayerHealth : MonoBehaviour
     {
         //player invulnerable if shield is active;
         invulnerable = shield.activeSelf;
-
-        if (currentHp <= 0) {
-            die();
-        }
     }
 
     public void takeDamage(int damage) {
-        if (invulnerable) return;
+        if (invulnerable || dead) return;
+
+        StartCoroutine(DamageFlash());
 
         currentHp -= damage;
         hpBar.setHealth(currentHp);
 
         hurtSound.Play();
 
-        StartCoroutine(cameraShake.Shake(0.15f, 0.3f));
+        if (currentHp <= 0)
+            StartCoroutine(die());
+        
+        //add a knockback effect?
+
+        StartCoroutine(cameraShake.Shake(0.15f, 0.2f));
     }
 
-    void die() {
-        transform.position = new Vector3(50, 50, 0);
+    IEnumerator die() {
+        dead = true;
+        BGM.volume = 0.02f;
+
+        //death particles & screenshake
+        Instantiate(deathParticles, transform.position, deathParticles.transform.rotation);
+        StartCoroutine(cameraShake.Shake(0.4f, 0.55f));
+        playerDeath.Play();
+        
+        sprite.enabled = false;
+        yield return new WaitForSeconds(0.8f);
+  
         GameManager.onPlayerDeath();
     }
 
-    public void respawn() {
-        transform.position = respawnPoint.position;
-
-        //reset hp
-        currentHp = maxHp;
-        hpBar.setMaxHealth(maxHp);
-    }
+    ///SHIELD CODE
 
     public void activateShield() {
         StartCoroutine(activateShieldCoroutine());
@@ -83,10 +96,15 @@ public class PlayerHealth : MonoBehaviour
 
 
     void takeAcidDamage(int damage) {
+        if (dead) return;
+
         currentHp -= damage;
         hpBar.setHealth(currentHp);
 
         hurtSound.Play();
+
+        if (currentHp <= 0)
+            StartCoroutine(die());
 
         StartCoroutine(cameraShake.Shake(0.1f, 0.2f));
     }
@@ -97,6 +115,10 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    
+    IEnumerator DamageFlash() {
+		sprite.color = new Color(1, 0.4f, 0.4f, 1f);
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = new Color (1, 1, 1, 1);
+	}
 
 }

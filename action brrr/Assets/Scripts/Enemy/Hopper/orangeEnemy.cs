@@ -23,12 +23,17 @@ public class orangeEnemy : MonoBehaviour
     private SpriteRenderer sprite;
     private bool facingRight = true;
 
+    private GameManager game;
+
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         jumpSound = GetComponent<AudioSource>();
         sprite = GetComponent<SpriteRenderer>();
+        game = GameObject.Find("GameManager").GetComponent<GameManager>();
+
 
         player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
@@ -39,6 +44,8 @@ public class orangeEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!game.player) return;
+
         if (timeBtwJumps <= 0) {
             jump();
             timeBtwJumps = startTimeBtwJumps;

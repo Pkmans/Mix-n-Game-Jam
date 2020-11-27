@@ -12,10 +12,13 @@ public class enemyHealth : MonoBehaviour
     private SpriteRenderer body;
     private scoreScript scoreScript;
 
+    private Spawner spawner;
+
 
     void Start() {
         body = GetComponent<SpriteRenderer>();
         scoreScript = GameObject.Find("Score").GetComponent<scoreScript>();
+        spawner = GameObject.Find("enemySpawner").GetComponent<Spawner>();
     }
 
     void Update() {
@@ -53,6 +56,9 @@ public class enemyHealth : MonoBehaviour
         Instantiate(deathParticles, transform.position, deathParticles.transform.rotation);
         Instantiate(scoreParticle, transform.position, scoreParticle.transform.rotation);
         
+        if (gameObject.name == "fatEnemy")
+            spawner.curAmount -= 1;
+
         scoreScript.addScore(scoreValue);
         Destroy(gameObject);
     }

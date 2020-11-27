@@ -19,16 +19,19 @@ public class Spawner : MonoBehaviour
     private float playTime;
     public float maxRate;
 
-    //timers
+    //boss vars
     public float bossRate;
     private float bossTimer;
+    private float maxAmount = 2;
+    [HideInInspector]
+    public float curAmount;
 
     // Start is called before the first frame update
     void Start()
     {
         bossTimer = bossRate;
-
         timeBtwSpawn = startTimeBtwSpawn;
+
     }
 
     // Update is called once per frame
@@ -50,13 +53,11 @@ public class Spawner : MonoBehaviour
             playTime += Time.deltaTime;
 
         //spawn boss at intervals
-        if(bossTimer <= 0) {
+        if(bossTimer <= 0 && curAmount < maxAmount) {
             spawnBoss();
-            bossTimer = bossRate;
+            resetBossTimer();
         } else
             bossTimer -= Time.deltaTime;
-            
-        
 
     }
 
@@ -86,6 +87,13 @@ public class Spawner : MonoBehaviour
 
         Vector3 pos = new Vector3(Random.Range(x1, x2), top.position.y);
 
-        Instantiate(boss, pos, Quaternion.identity);
+        GameObject bossInstance = Instantiate(boss, pos, Quaternion.identity);
+
+        curAmount += 1;
     }
+
+    void resetBossTimer() {
+        bossTimer = bossRate;
+    }
+
 }
