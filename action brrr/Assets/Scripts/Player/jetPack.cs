@@ -22,6 +22,10 @@ public class jetPack : MonoBehaviour
 
     private bool ready;
 
+    private float xVel;
+    private float yVel;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +40,10 @@ public class jetPack : MonoBehaviour
         ready = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update() 
     {
-        float xVel = rb.velocity.x;
-        float yVel = rb.velocity.y;
+        xVel = rb.velocity.x;
+        yVel = rb.velocity.y;
 
         //reset jetpack duration if grounded
         if (timeLeft != timeMax && player.isGrounded) {
@@ -55,7 +58,7 @@ public class jetPack : MonoBehaviour
             if (!ready) return;
 
             if (yVel < -8f)
-                rb.velocity = (new Vector2(xVel, -4f));
+                rb.velocity = (new Vector2(xVel, -2f));
 
             //effects
             Instantiate(smokeParticles, transform.position, smokeParticles.transform.rotation);
@@ -63,6 +66,14 @@ public class jetPack : MonoBehaviour
             jetpackSound.Play();
         }
 
+        
+
+        if (timeLeft < 0)
+            ready = false;
+    }
+
+    void FixedUpdate() 
+    {
         //use jetpack if holding down key
         if (Input.GetKey(KeyCode.LeftShift) && timeLeft > 0 && ready) {
             
@@ -79,10 +90,6 @@ public class jetPack : MonoBehaviour
             fireParticles.Stop();
             jetpackSound.Stop();
         }
-
-        if (timeLeft < 0)
-            ready = false;
-    
     }
 
 }

@@ -1289,8 +1289,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 25
   hpBar: {fileID: 0}
-  acidParticles: {fileID: 0}
+  deathParticles: {fileID: 0}
   hurtSound: {fileID: 0}
+  playerDeath: {fileID: 0}
   cameraShake: {fileID: 0}
   shield: {fileID: 816889230536195663}
   shieldDuration: 6
@@ -1702,7 +1703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a279ad1ee5941cd4a9f60de57af5f000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 23
+  strength: 92
   smokeParticles: {fileID: 489241540040934414, guid: 35819d1925d848e43b20700f0b94c0ba,
     type: 3}
   fireParticles: {fileID: 8143674147575222841}
